@@ -1,4 +1,4 @@
-use ExtUtils::MakeMaker;
+use CPAN::MakeMaker;
 
 WriteMakefile(
 	      'NAME'	=> 'HTML::RSSAutodiscovery',
@@ -10,6 +10,6 @@ WriteMakefile(
 				 LWP::UserAgent => 0,
 				 HTTP::Request  => 0,
 				 HTML::Parser   => 0,
+				 Test::More     => 0,
 				},
-	      dist	        => {COMPRESS => 'gzip', SUFFIX => 'tar.gz'},
 );

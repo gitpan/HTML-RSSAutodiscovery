@@ -1,5 +1,17 @@
 Revision history for Perl extension HTML::RSSAutodiscovery
 
-1.0	Mon Jun 03, 2002
+1.1	 Wed Oct 30, 2002
 
-	- Initial revision.
+	 - Added hooks to check anchors ending in xml,rdf or rss for RSS-ness
+
+	 - Added hooks to check syndic8 for additional RSS feeds
+
+	 - Replaced test.pl with *.t and Test::More
+
+	 - Replaced ExtUtils::MakeMaker with CPAN::MakeMaker
+
+	 - Updated POD
+
+1.0	 Mon Jun 03, 2002
+
+	 - Initial revision.
