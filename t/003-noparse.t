@@ -10,7 +10,7 @@ if ($@) {
 
 plan tests => 5;
 
-my $url   = "aaronland";
+my $url   = "scripting";
 my $links = undef;
 my $count = undef;
 

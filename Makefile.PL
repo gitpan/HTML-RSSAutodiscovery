@@ -1,4 +1,4 @@
-use CPAN::MakeMaker;
+use ExtUtils::MakeMaker;
 
 WriteMakefile(
 	      'NAME'	=> 'HTML::RSSAutodiscovery',

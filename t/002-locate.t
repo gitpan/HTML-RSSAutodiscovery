@@ -3,9 +3,9 @@ use strict;
 use Test::More;
 plan tests => 5;
 
-my $url   = "http://www.diveintomark.org";
-my $links = undef;
-my $count = undef;
+my $url = "http://www.diveintomark.org";
+
+my ($links,$count);
 
 use_ok("HTML::RSSAutodiscovery");
 
@@ -13,7 +13,7 @@ my $html = HTML::RSSAutodiscovery->new();
 
 isa_ok($html,"HTML::RSSAutodiscovery");
 
-my $links = undef;
+undef $links;
 
 eval { $links = $html->locate($url); };
 is($@,'',"Parsed $url");

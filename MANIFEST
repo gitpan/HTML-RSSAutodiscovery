@@ -7,4 +7,4 @@ t/002-locate.t
 t/003-noparse.t
 t/004-embedded.t
 t/005-syndic8.t
-CPAN/MakeMaker.pm
+META.yml                                 Module meta-data (added by MakeMaker)

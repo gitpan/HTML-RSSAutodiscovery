@@ -1,3 +1,10 @@
+use strict;
+
+package HTML::RSSAutodiscovery;
+use base qw (HTML::Parser);
+
+# $Id: RSSAutodiscovery.pm,v 1.4 2004/02/10 02:40:27 asc Exp $
+
 =head1 NAME
 
 HTML::RSSAutodiscovery - methods for retreiving RSS-ish information from an HTML document.
@@ -15,23 +22,20 @@ HTML::RSSAutodiscovery - methods for retreiving RSS-ish information from an HTML
  # Mark's gone a bit nuts with this and
  # the list is too long to include here...
 
+ # see the POD for the 'parse' method for
+ # details of what it returns.
+
 =head1 DESCRIPTION
 
 Methods for retreiving RSS-ish information from an HTML document.
 
 =cut
 
-use strict;
-
-package HTML::RSSAutodiscovery;
-use base qw (HTML::Parser);
-
 use LWP::UserAgent;
 use HTTP::Request;
-
 use Carp;
 
-$HTML::RSSAutodiscovery::VERSION   = '1.1';
+$HTML::RSSAutodiscovery::VERSION   = '1.2';
 
 use constant SYNDIC8_PROXY     => "http://www.syndic8.com/xmlrpc.php";
 use constant SYNDIC8_CLASS     => "syndic8";
@@ -69,7 +73,9 @@ sub init {
 
 =head1 OBJECT METHODS
 
-=head2 $pkg->parse($arg)
+=cut
+
+=head2 $obj->parse($arg)
 
 Parse an HTML document and return RSS-ish &lt;link> information.
 
@@ -115,7 +121,7 @@ sub parse {
   my $self = shift;
   my $uri  = shift;
 
-  my $data = undef;
+  my $data = $uri;
 
   if (ref($data) ne "SCALAR") {
     $data = $self->_fetch($uri) || return undef;
@@ -128,7 +134,7 @@ sub parse {
   return $self->{'__links'};
 }
 
-=head2 $pkg->locate($uri,\%args)
+=head2 $obj->locate($uri,\%args)
 
 Like the I<parse> method, but will perform additional lookups, if necessary or specified.
 
@@ -154,7 +160,8 @@ Hash ref whose keys may be
 
 B<noparse>
 
-Boolean. Don't bother parsing the document, this will also prevent you from checking for embedded links.
+Boolean. Don't bother parsing the document, this will also prevent you 
+from checking for embedded links.
 
 I don't know why you want to do this, but you can.
 
@@ -164,9 +171,11 @@ False, by default.
 
 B<embedded>
 
-Boolean. Check all embedded links ending in '.xml', '.rss' or '.rdf' (and then 'xml', 'rss' or 'rdf') for RSS-ness.
+Boolean. Check all embedded links ending in '.xml', '.rss' or '.rdf' 
+(and then 'xml', 'rss' or 'rdf') for RSS-ness.
 
-False, by default, unless the initial parsing of the URI returns no RSS links.
+False, by default, unless the initial parsing of the URI returns no
+RSS links.
 
 =item *
 
@@ -174,7 +183,8 @@ B<embedded_and_remote>
 
 Boolean.
 
-Boolean. Check all embedded links whose root is not the same as I<$uri> for RSS-ness.
+Boolean. Check all embedded links whose root is not the same as I<$uri> 
+for RSS-ness.
 
 False, by default.
 
@@ -184,7 +194,8 @@ B<syndic8>
 
 Boolean. Check the syndic8 servers for sites matching I<$uri>
 
-False, by default, unless the initial parsing of the URI and any embedded links returns no RSS links.
+False, by default, unless the initial parsing of the URI and any embedded links
+returns no RSS links.
 
 =back
 
@@ -481,12 +492,16 @@ sub _start {
       
   # Check links
     
-  if ($attrs->{'name'} =~ /^(XML|RSS)$/) {
-    return;
+  if ((defined($attrs->{'name'})) && 
+      ($attrs->{'name'} =~ /^(XML|RSS)$/)) {
+      return;
   }
-  if (($attrs->{'type'} ne "application/rss+xml") &&
+
+  if ((defined($attrs->{'name'})) &&
+      ($attrs->{'type'} ne "application/rss+xml") &&
       ($attrs->{'type'} ne "text/xml")) {
-    return;
+
+      return;
   }
 
   delete $attrs->{"/"};
@@ -495,11 +510,11 @@ sub _start {
 
 =head1 VERSION
 
-1.1
+1.2
 
 =head1 DATE
 
-Oct 30, 2002
+$Date: 2004/02/10 02:40:27 $
 
 =head1 AUTHOR
 
@@ -565,7 +580,7 @@ B<XMLRPC::Lite>
 
 =head1 LICENSE
 
-Copyright (c) 2002, Aaron Straup Cope. All Rights Reserved.
+Copyright (c) 2002-2004, Aaron Straup Cope. All Rights Reserved.
 
 This is free software, you may use it and distribute it under the same terms as Perl itself.
 

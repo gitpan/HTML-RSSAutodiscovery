@@ -1,5 +1,15 @@
 Revision history for Perl extension HTML::RSSAutodiscovery
 
+1.2	 Mon Feb 09, 2004
+
+	 - Fixed RT bug #4288
+
+	 - Fixed RT bug #4473
+
+	 - Removed use of CPAN::MakeMaker
+
+	 - Updated POD
+
 1.1	 Wed Oct 30, 2002
 
 	 - Added hooks to check anchors ending in xml,rdf or rss for RSS-ness
