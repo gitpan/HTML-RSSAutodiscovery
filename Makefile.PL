@@ -1,3 +1,4 @@
+use strict;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
@@ -7,9 +8,9 @@ WriteMakefile(
 	       ABSTRACT => '') : (),
 	      'VERSION_FROM' => 'lib/HTML/RSSAutodiscovery.pm',
 	      'PREREQ_PM'    => {
-				 LWP::UserAgent => 0,
-				 HTTP::Request  => 0,
-				 HTML::Parser   => 0,
-				 Test::More     => 0,
-				},
+		  'LWP::UserAgent' => 0,
+		  'HTTP::Request'  => 0,
+		  'HTML::Parser'   => 0,
+		  'Test::More'     => 0,
+	      },
 );

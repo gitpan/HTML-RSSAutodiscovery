@@ -3,7 +3,7 @@ use strict;
 package HTML::RSSAutodiscovery;
 use base qw (HTML::Parser);
 
-# $Id: RSSAutodiscovery.pm,v 1.4 2004/02/10 02:40:27 asc Exp $
+# $Id: RSSAutodiscovery.pm,v 1.5 2004/10/17 04:13:06 asc Exp $
 
 =head1 NAME
 
@@ -35,7 +35,7 @@ use LWP::UserAgent;
 use HTTP::Request;
 use Carp;
 
-$HTML::RSSAutodiscovery::VERSION   = '1.2';
+$HTML::RSSAutodiscovery::VERSION   = '1.21';
 
 use constant SYNDIC8_PROXY     => "http://www.syndic8.com/xmlrpc.php";
 use constant SYNDIC8_CLASS     => "syndic8";
@@ -510,11 +510,11 @@ sub _start {
 
 =head1 VERSION
 
-1.2
+1.21
 
 =head1 DATE
 
-$Date: 2004/02/10 02:40:27 $
+$Date: 2004/10/17 04:13:06 $
 
 =head1 AUTHOR
 

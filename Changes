@@ -1,5 +1,11 @@
 Revision history for Perl extension HTML::RSSAutodiscovery
 
+1.21	 Sun Oct 17 2004
+
+	 - FIXED t/003-noparse.t and t/005-syndic8
+	   to skip is XMLRPC::Lite is not installed
+	   per RT bug # 7975
+
 1.2	 Mon Feb 09, 2004
 
 	 - Fixed RT bug #4288
